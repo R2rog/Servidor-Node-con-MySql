@@ -5,8 +5,8 @@ var express=require('express');
 var bodyParser= require('body-parser');
 var path= require('path');
 var expressValidator=require('express-validator');//Valida las entradas de los formularios.
-var Sequelize = require('sequelize');//Ayuda a la interacción entre la bd y el servidor.
-var mysql      = require('mysql');
+//var Sequelize = require('sequelize');Ayuda a la interacción entre la bd y el servidor.
+var mysql= require('mysql');
 const port=8080;//Puerto por el que se conecta el servidor.
 
 //Estableciendo la conexión con MySql
@@ -73,6 +73,25 @@ app.get('/',function(req,res){
 	});
 });
 
+//Funcion que despliega la tabla de los clientes.
+app.get('/views/tabla',function(req,res){
+    connection.query('select nombre, telefono from clientes',function(err,result){
+        if(err){
+          console.error(err);
+          return;
+        }
+        else{
+          console.error(result);
+          var clientes=result;
+          console.log('Clientes');
+          console.log(clientes);
+          res.render('tabla',{
+            clientes:clientes
+          });
+        }
+  });
+});
+
 //Función que recibe el formulario del HTML
 app.post('/users/add',function(req,res){
 	req.checkBody('nombre','El nombre es requerido').notEmpty();
@@ -109,27 +128,3 @@ app.post('/users/add',function(req,res){
 app.listen(port,function(){
 	console.log("El servidor esta corriendo");
 });
-
-
-//Sequelize
-/*Creando la conexión a la base de datos.
-var connection= new Sequelize(
-'prueba',//Nombre de la base de datos
-'root',//Nombre del usuario.
-'root',//Contraseña del usuario.
-{
-	host:'localhost',
-  port:8889,//Puerto del localhost
-	dialect:'mysql',//Requerido.
-});
-
-//Definiendo el modelo de la tabla con Sequelize.
-var cliente= connection.define('cliente',{
-	nombre: {
-	 type: Sequelize.STRING
- },
- telefono: {
-	 type: Sequelize.INTEGER
- }
-});
-connection.sync();*/

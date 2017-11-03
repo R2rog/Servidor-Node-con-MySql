@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Tabla</title>
+    <style>
+    table, th, td{
+       border: 1px solid black;
+       border-collapse: collapse;
+       text-align: left;
+     }
+     tr:nth-child(even) {
+       background-color: #dddddd;
+     }
+    </style>
+  </head>
+  <body>
+    <h1>Tabla de los clientes en base de datos</h1>
+    <table style="width:100%" id="tablaClientes">
+      <tr>
+        <th>Nombre</th>
+        <th>Calificacion</th>
+      </tr>
+        <% clientes.forEach(function(cliente) { %>
+          <tr>
+          <th><%= cliente.nombre%></th>
+          <th> <%= cliente.telefono%> </th>
+          </tr>
+        <% }); %>
+    </table>
+
+  </body>
+</html>
