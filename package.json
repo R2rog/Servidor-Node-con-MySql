@@ -1,0 +1,20 @@
+{
+  "name": "testy",
+  "version": "1.0.0",
+  "description": "Servidor de prueba",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Arturo Guevara",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "express-validator": "^4.2.1",
+    "mysql": "^2.15.0",
+    "mysql2": "^1.4.2",
+    "sequelize": "^4.19.0"
+  }
+}
